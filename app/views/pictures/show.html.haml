@@ -1,0 +1,37 @@
+
+.container
+  .row
+    .col-md-4.show-pic
+      %p#notice= notice
+      %p
+        %strong Author:
+        = @picture.author
+      %p
+        %strong Model:
+        = @picture.model
+      %p
+        %strong Description:
+        = @picture.description
+      %p
+        %strong Condition:
+        = @picture.condition
+      %p
+        %strong Finish:
+        = @picture.finish
+      %p
+        %strong Title:
+        = @picture.title
+      %p
+        %strong Sold By:
+        = @picture.user&.name
+      %p
+        %strong Price:
+        = @picture.price
+      = link_to 'Edit', edit_picture_path(@picture), class: "btn btn-danger"
+      = link_to 'Back', pictures_path, class: "btn btn-warning"
+      = link_to line_items_path(picture_id: @picture), method: :post, class: "btn btn-info" do
+        %i.fas.fa-cart Add To Cart
+
+
+    .col-md-8
+      = image_tag(@picture.image_url, class: "picture-preview-large")

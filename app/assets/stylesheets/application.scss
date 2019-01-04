@@ -21,3 +21,29 @@ body {
   background-color: #f6f5d5;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+
+.picture-preview-thumb {
+  width: 600px;
+  height: 500px;
+}
+.picture-preview-large {
+  width: 700px;
+  height: 550px;
+  margin-top: 25px;
+}
+.show-pic {
+  margin-top: 15px;
+}
+.card-img-top {
+  margin-top: 10px;
+}
+.new-picture {
+  margin-bottom: 10px;
+}
+.card-margin {
+  margin-bottom: 10px;
+  margin-topT: 10px;
+}
+#notice {
+  color: green;
+}
