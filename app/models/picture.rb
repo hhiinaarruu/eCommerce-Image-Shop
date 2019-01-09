@@ -15,7 +15,6 @@ class Picture < ApplicationRecord
   AUTHOR = %w{ HiNaru Hinawabi Sakura Songoku Vandervial Madara Luffy Vegetar }
   FINISH = %w{ Silk Oil Colored-Mosaic Bronze Sand Paper }
   CONDITION = %w{ New Excellent Blur Torned Ancient }
-
   class << self
     def search(params)
       pictures = Picture.where("title LIKE ? or condition LIKE ? or author LIKE ?",
@@ -23,7 +22,6 @@ class Picture < ApplicationRecord
       pictures
     end
   end
-
   private
   def not_referenced_by_any_line_item
     unless line_items.empty?
