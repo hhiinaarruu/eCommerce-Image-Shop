@@ -20,6 +20,11 @@ body {
   background-color: #f6f5d5;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+footer {
+  background-color: #ffc107;
+  color: white;
+  margin-top: 50px;
+}
 
 .picture-preview-thumb {
   width: 600px;
@@ -90,3 +95,21 @@ body {
   margin-right: 0px !important;
   margin-left: 0px !important
 }
+.form-search {
+  display: flex;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.fas.fa-palette.big {
+  font-size: 80px;
+}
+.fas.fa-paint-brush.big {
+  font-size: 60px;
+ }
