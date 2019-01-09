@@ -9,9 +9,9 @@
   - @pictures.each do |picture|
     .card.col-md-4.card-margin
       .card-img-top.text-center
-        = image_tag(picture.image_url ,style: "width: 18rem;")
+        = image_tag(picture.image_url ,class: "img-show")
         - if picture.condition?
-          .text-right
+          .text-right.text-secondary
             = picture.condition
         div
           i.fas.fa-paint-brush ARTIST:
@@ -23,10 +23,11 @@
         p.card-text.text-info
           i.fas.fa-user Sold by :
           = picture.user&.name
-        .btn.btn-primary
-          = number_to_currency(picture.price)
-        - if picture_author(picture)
-          = link_to 'Edit', edit_picture_path(picture), class: "btn btn-warning"
-          = link_to 'Delete', picture, method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-danger float-right"
+        .row
+          .btn.btn-primary.text-center
+            = number_to_currency(picture.price)
+          - if picture_author(picture)
+            = link_to 'Edit', edit_picture_path(picture), class: "btn btn-warning"
+            = link_to 'Delete', picture, method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-danger float-right"
   .align-bottom.pagination-lg.btn
     = paginate @pictures
