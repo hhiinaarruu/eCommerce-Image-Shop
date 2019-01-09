@@ -1,33 +1,22 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: %i[show edit update destroy]
 
-  # GET /carts
-  # GET /carts.json
   def index
     @carts = Cart.all
   end
 
-  # GET /carts/1
-  # GET /carts/1.json
   def show
   end
 
-  # GET /carts/new
   def new
     @cart = Cart.new
   end
 
-  # GET /carts/1/edit
   def edit
   end
 
-  # POST /carts
-  # POST /carts.json
-
-  # PATCH/PUT /carts/1
-  # PATCH/PUT /carts/1.json
   def update
     respond_to do |format|
       if @cart.update(cart_params)
@@ -40,8 +29,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # DELETE /carts/1
-  # DELETE /carts/1.json
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
@@ -52,15 +39,12 @@ class CartsController < ApplicationController
   end
 
   private
-
   def cart_params
-
     params.fetch(:cart, {})
   end
 
   def invalid_cart
     logger.error "Attempt to access invalid cart #{params[:id]}"
-    redirect_to root_path, notice: "That cart doesn't exist"
-
+    redirect_to root_path, notice: 'That cart does not exist'
   end
 end

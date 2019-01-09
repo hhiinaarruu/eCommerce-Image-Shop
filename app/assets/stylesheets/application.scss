@@ -15,10 +15,17 @@
  */
  @import "bootstrap";
 
+$body-color: #f6f5d5;
+$footer-color: #ffc107;
 body {
   height: 100%;
-  background-color: #f6f5d5;
+  background-color: $body-color;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+footer {
+  background-color: $footer-color;
+  color: white;
+  margin-top: 50px;
 }
 
 .picture-preview-thumb {
@@ -87,6 +94,24 @@ body {
   min-height: 200px;
 }
 .row.row-center {
-  margin-right: 0px !important;
-  margin-left: 0px !important
+  margin-right: 0 !important;
+  margin-left: 0 !important
 }
+.form-search {
+  display: flex;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.fas.fa-palette.big {
+  font-size: 80px;
+}
+.fas.fa-paint-brush.big {
+  font-size: 60px;
+ }

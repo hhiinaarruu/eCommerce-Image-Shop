@@ -28,5 +28,3 @@
         - if picture_author(picture)
           = link_to 'Edit', edit_picture_path(picture), class: "btn btn-warning"
           = link_to 'Delete', picture, method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-danger float-right"
-  .align-bottom.pagination-lg.btn
-    = paginate @pictures

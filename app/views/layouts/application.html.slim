@@ -20,6 +20,10 @@ html lang="en"
         span.navbar-toggler-icon
       #collapsibleNavbar.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
+          li.nav-item
+            = form_tag search_pictures_path, method: :get, class: "form-search" do
+              = text_field_tag :search, nil, placeholder: "Search", class: "form-control"
+              = submit_tag "Search", class: "btn btn-danger"
           - if user_signed_in?
             li.nav-item
               = link_to new_picture_path, class: "navbar-item btn btn-warning text-light" do
@@ -52,3 +56,4 @@ html lang="en"
     = yield(:header)
     .container
       = yield
+  = render "layouts/footer"

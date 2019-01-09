@@ -1,29 +1,29 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: %i[show edit update destroy]
 
-  # GET /pictures
-  # GET /pictures.json
   def index
-    @pictures = Picture.all.order('created_at desc')
+    @pictures = Picture.filter(params.slice(:author, :finish, :condition)).page(params[:page]).per(5)
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
   end
 
-  # GET /pictures/new
   def new
     @picture = current_user.pictures.build
   end
 
-  # GET /pictures/1/edit
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
+  def search
+      @pictures = if params[:search].blank?
+                    Picture.filter(params.slice(:author, :finish, :condition))
+                  else
+                    Picture.search(params)
+                  end
+  end
+
   def create
     @picture = current_user.pictures.build(picture_params)
 
@@ -38,8 +38,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
       if @picture.update(picture_params)
@@ -52,8 +50,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     @picture.destroy
     respond_to do |format|
@@ -63,12 +59,10 @@ class PicturesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:author, :model, :description, :condition, :finish, :title, :price, :image)
     end
