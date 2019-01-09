@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', function() {
   var Image = document.querySelector('.picture-image');
 
   function handleFileSelect(evt) {
@@ -19,11 +19,15 @@ document.addEventListener("turbolinks:load", function() {
         return function(e) {
           // Render thumbnail.
           var span = document.createElement('span');
-          span.innerHTML = ['<img class="picture-preview-thumb" src="', e.target.result,
-            '" title="', escape(theFile.name), '"/>'
+          span.innerHTML = [
+            '<img class="picture-preview-thumb" src="',
+            e.target.result,
+            '" title="',
+            escape(theFile.name),
+            '"/>'
           ].join('');
           var image = document.getElementById('image');
-          image.innerHTML = "";
+          image.innerHTML = '';
           image.insertBefore(span, null);
         };
       })(f);

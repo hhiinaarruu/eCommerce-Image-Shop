@@ -47,3 +47,47 @@ body {
 #notice {
   color: green;
 }
+.img-small-size {
+  width: 200px;
+  height: 150px;
+
+}
+@media only screen and (max-width: 768px) {
+  .img-small-size {
+  width: 270px;
+  min-height: 230px;
+  }
+}
+.total {
+  margin-top: 30px;
+}
+.fas.fa-palette {
+  font-size: 23px;
+}
+.fab.fa-sellcast {
+  font-size: 20px;
+}
+.card.border-warning {
+  width: 270px;
+  min-height: 200px;
+}
+@media only screen and (max-width: 768px) {
+  .card.border-warning {
+  width: 320px;
+  min-height: 250px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .card.border-warning.mb-2 {
+  width: 320px;
+  min-height: 250px;
+  }
+}
+.card.border-warning.mb-2 {
+  min-width: 200px;
+  min-height: 200px;
+}
+.row.row-center {
+  margin-right: 0px !important;
+  margin-left: 0px !important
+}

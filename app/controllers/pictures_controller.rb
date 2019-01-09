@@ -1,11 +1,11 @@
 class PicturesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all.order("created_at desc")
+    @pictures = Picture.all.order('created_at desc')
   end
 
   # GET /pictures/1
