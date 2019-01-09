@@ -31,6 +31,7 @@ gem 'mini_magick'
 gem 'slim'
 gem 'stripe'
 gem 'kaminari', '~> 1.1.1'
+gem 'social-share-button'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
