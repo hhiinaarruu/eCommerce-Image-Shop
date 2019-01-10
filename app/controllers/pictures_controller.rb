@@ -1,7 +1,6 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_picture, only: %i[show edit update destroy]
-
   def index
     @pictures = Picture.filter(params.slice(:author, :finish, :condition)).page(params[:page]).per(5)
   end
@@ -17,7 +16,7 @@ class PicturesController < ApplicationController
   end
 
   def search
-      @pictures = if params[:search].blank?
+    @pictures = if params[:search].blank?
                     Picture.filter(params.slice(:author, :finish, :condition))
                   else
                     Picture.search(params)
@@ -26,11 +25,14 @@ class PicturesController < ApplicationController
 
   def create
     @picture = current_user.pictures.build(picture_params)
-
+    @user = User.all
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
+        @user.each do |user|
+          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          format.json { render :show, status: :created, location: @picture }
+          PictureNotifierMailer.send_picture_notifier_email(user).deliver
+        end
       else
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }

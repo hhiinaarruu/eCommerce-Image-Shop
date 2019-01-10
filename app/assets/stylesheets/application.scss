@@ -180,3 +180,21 @@ footer {
     width: 13rem;
   }
 }
+.social-share-button-twitter {
+    display: inline-block !important;
+    background-repeat: no-repeat !important;
+    background-size: 100px 80px !important;
+    background-position: -60px -60px !important;
+    height: 20px !important;
+    width: 20px !important;
+    margin-top: 10px;
+}
+.social-share-button-facebook {
+    display: inline-block !important;
+    background-repeat: no-repeat !important;
+    background-size: 100px 80px !important;
+    background-position: -40px 0px !important;
+    height: 20px !important;
+    width: 20px !important;
+    margin-top: 10px;
+}
