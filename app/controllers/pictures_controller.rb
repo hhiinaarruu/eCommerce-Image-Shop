@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -27,11 +27,14 @@ class PicturesController < ApplicationController
 
   def create
     @picture = current_user.pictures.build(picture_params)
-
+    @user = User.all
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
+        @user.each do |user|
+          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          format.json { render :show, status: :created, location: @picture }
+          PictureNotifierMailer.send_picture_notifier_email(user).deliver
+        end
       else
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
