@@ -1,9 +1,7 @@
 class LineItemsController < ApplicationController
-
-  before_action :authenticate_user!
+  include CurrentCart
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
   before_action :set_cart, only: [:create]
-
 
   # GET /line_items
   # GET /line_items.json
@@ -74,7 +72,7 @@ class LineItemsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def line_item_params
-    #   params.require(:line_item).permit(:picture_id)
-    # end
+    def line_item_params
+      params.require(:line_item).permit(:picture_id)
+    end
 end
