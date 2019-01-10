@@ -48,11 +48,9 @@ html lang="en"
                   = link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item"
           - else
             li.nav-item
-              .nav-link
-                = link_to "Sign In", new_user_session_path, class:"navbar-item button is-warning"
+              = link_to "Sign In", new_user_session_path,  class: "navbar-item btn btn-warning text-light"
             li.nav-item
-              .nav-link
-                = link_to "Sign up", new_user_registration_path, class:"navbar-item button is-warning"
+              = link_to "Sign up", new_user_registration_path,  class: "navbar-item btn btn-warning text-light"
     = yield(:header)
     .container
       = yield
