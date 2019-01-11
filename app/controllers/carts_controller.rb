@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :set_cart, only: %i[show edit update destroy]
+  before_action :set_cart, only: %i[show edit update destroy index]
 
   def index
     @carts = Cart.all

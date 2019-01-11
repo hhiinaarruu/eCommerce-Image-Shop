@@ -13,6 +13,12 @@
         - if picture.condition?
           .text-right.text-secondary
             = picture.condition
+        - if picture.available?
+          .text-right.text-success
+            = picture.status
+        - if picture.unavailable?
+          .text-right.text-warning
+            = picture.status
         div
           i.fas.fa-paint-brush ARTIST:
           .text-warning

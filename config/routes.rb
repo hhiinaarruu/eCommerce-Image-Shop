@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:new, :create, :index]
   resources :line_items
   resources :carts
   resources :pictures do

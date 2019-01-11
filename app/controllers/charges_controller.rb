@@ -2,14 +2,20 @@ class ChargesController < ApplicationController
   before_action :authenticate_user!
   rescue_from Stripe::CardError, with: :catch_exception
   before_action :set_cart, only: %i[create new]
-
+  def index
+    @cart_status = Cart.where(user: current_user)
+  end
   def new
   end
 
   def create
     StripeChargesServices.new(charges_params, current_user).call
     CheckoutNotifierMailer.send_checkout_email(current_user).deliver
-    @cart.destroy
+    @cart.paid!
+    @cart.line_items.each do |litem|
+      litem.picture.unavailable!
+    end
+    session.delete(:cart_id)
     redirect_to new_charge_path
   end
 

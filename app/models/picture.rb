@@ -3,6 +3,7 @@ class Picture < ApplicationRecord
   belongs_to :user, optional: true
   has_many :line_items
   paginates_per 50
+  enum status: %i[unavailable available]
   include Filterable
   mount_uploader :image, ImageUploader
   scope :author, -> (author) { where author: author }

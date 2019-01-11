@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-
+   *= require_tree .
  *= require_self
  *= require social-share-button
  */
@@ -129,8 +129,7 @@ footer {
 .fas.fa-palette.big {
   font-size: 80px;
 }
-<<<<<<< 5a93319f68f755ba8ef3b0e6b7b3af473e0b88eb
-=======
+
 .form-search {
   display: flex;
 }
@@ -143,10 +142,7 @@ footer {
   padding: 8px 16px;
   text-decoration: none;
 }
-.fas.fa-palette.big {
-  font-size: 80px;
-}
->>>>>>> 2.5 Searching feature finish
+
 .fas.fa-paint-brush.big {
   font-size: 60px;
  }

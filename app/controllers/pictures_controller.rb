@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_picture, only: %i[show edit update destroy]
+  before_action :set_cart, only: %i[index]
   def index
     @pictures = Picture.filter(params.slice(:author, :finish, :condition)).page(params[:page]).per(5)
   end
@@ -16,11 +17,19 @@ class PicturesController < ApplicationController
   end
 
   def search
+<<<<<<< d346684797ca53993495499141327d92c8908ecb
     @pictures = if params[:search].blank?
                     Picture.filter(params.slice(:author, :finish, :condition))
                   else
                     Picture.search(params)
                   end
+=======
+    @pictures = if  params[:search].blank?
+                  Picture.filter(params.slice(:author, :finish, :condition))
+                else
+                  Picture.search(params)
+                end
+>>>>>>> final-project
   end
 
   def create
