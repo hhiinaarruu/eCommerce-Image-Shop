@@ -10,7 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-   *= require_tree .
  *= require_self
  *= require social-share-button
  */
@@ -191,7 +190,7 @@ footer {
     display: inline-block !important;
     background-repeat: no-repeat !important;
     background-size: 100px 80px !important;
-    background-position: -40px 0px !important;
+    background-position: -40px 0 !important;
     height: 20px !important;
     width: 20px !important;
     margin-top: 10px;

@@ -17,59 +17,41 @@ class PicturesController < ApplicationController
   end
 
   def search
-<<<<<<< d346684797ca53993495499141327d92c8908ecb
     @pictures = if params[:search].blank?
-                    Picture.filter(params.slice(:author, :finish, :condition))
-                  else
-                    Picture.search(params)
-                  end
-=======
-    @pictures = if  params[:search].blank?
                   Picture.filter(params.slice(:author, :finish, :condition))
                 else
                   Picture.search(params)
                 end
->>>>>>> final-project
   end
 
   def create
     @picture = current_user.pictures.build(picture_params)
     @user = User.all
-    respond_to do |format|
-      if @picture.save
-        @user.each do |user|
-          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-          format.json { render :show, status: :created, location: @picture }
-          PictureNotifierMailer.send_picture_notifier_email(user).deliver
-        end
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+    if @picture.save
+      redirect_to @picture, notice: 'Picture was successfully created.'
+      @user.each do |user|
+        PictureNotifierMailer.send_picture_notifier_email(user).deliver
       end
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
-      else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
+    if @picture.update(picture_params)
+      redirect_to @picture, notice: 'Picture was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to pictures_url, notice: 'Picture was successfully destroyed.'
   end
 
   private
+
     def set_picture
       @picture = Picture.find(params[:id])
     end

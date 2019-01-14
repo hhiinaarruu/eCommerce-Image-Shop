@@ -9,12 +9,12 @@ class Picture < ApplicationRecord
   scope :author, -> (author) { where author: author }
   scope :finish, -> (finish) { where finish: finish }
   scope :condition, -> (condition) { where condition: condition }
-  validates :title, :author, :price, :model, :image, presence: true
-  validates :description, length: { maximum: 1000, too_long: "%{count} character is the maximum aloud."}
-  validates :title, length: { maximum: 140, too_long: "%{count} character is the maximum aloud."}
-  validates :price, length: { maximum: 7 }
+  validates :title, :author, :price, :model, presence: true
+  validates :description, length:  { minimum: 3, maximum: 1000 }
+  validates :title, length:  { minimum: 3, maximum: 15 }
+  # validates :price, length: { minimum: 2, maximum: 7 }
   AUTHOR = %w{ HiNaru Hinawabi Sakura Songoku Vandervial Madara Luffy Vegetar }
-  FINISH = %w{ Silk Oil Colored-Mosaic Bronze Sand Paper }
+  FINISH = %w{ Silk Oil ColoredMosaic Bronze Sand Paper }
   CONDITION = %w{ New Excellent Blur Torned Ancient }
   class << self
     def search(params)

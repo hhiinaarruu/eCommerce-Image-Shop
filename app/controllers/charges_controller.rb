@@ -2,9 +2,14 @@ class ChargesController < ApplicationController
   before_action :authenticate_user!
   rescue_from Stripe::CardError, with: :catch_exception
   before_action :set_cart, only: %i[create new]
+
   def index
-    @cart_status = Cart.where(user: current_user)
+    @cart_status = current_user.carts
   end
+
+  def show
+  end
+
   def new
   end
 
@@ -20,6 +25,7 @@ class ChargesController < ApplicationController
   end
 
   private
+
   def charges_params
     params.permit(:stripeEmail, :stripeToken).merge(cart_id: session[:cart_id])
   end

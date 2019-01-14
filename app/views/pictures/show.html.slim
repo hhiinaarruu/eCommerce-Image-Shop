@@ -38,8 +38,9 @@
         i.fas.fa-dollar-sign
       = link_to 'Edit', edit_picture_path(@picture), class: "btn btn-danger"
       = link_to 'Back', pictures_path, class: "btn btn-warning"
-      = link_to line_items_path(picture_id: @picture), method: :post, class: "btn btn-info float-right" do
-        i.fas.fa-cart-plus Add To Cart
+      - if @picture.available?
+        = link_to line_items_path(picture_id: @picture), method: :post, class: "btn btn-info float-right" do
+          i.fas.fa-cart-plus Add To Cart
     .col-md-1.share-button
       = social_share_button_tag(@picture.title, :allow_sites => %w(twitter facebook))
 
