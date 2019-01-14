@@ -1,0 +1,46 @@
+
+.container
+  .row
+    .col-md-4.show-pic
+      p#notice= notice
+      p
+        i.fas.fa-user-tie
+        strong Author:
+        = @picture.author
+      p
+        i.fas.fa-female
+        strong Model:
+        = @picture.model
+      p
+        i.fas.fa-swatchbook
+        strong Description:
+        = @picture.description
+      p
+        i.fas.fa-clipboard-check
+        strong Condition:
+        = @picture.condition
+      p
+        i.fas.fa-quran
+        strong Finish:
+        = @picture.finish
+      p
+        i.fas.fa-bookmark
+        strong Title:
+        = @picture.title
+      p
+        i.fas.fa-user-secret
+        strong Sold By:
+        = @picture.user&.name
+      p
+        i.fas.fa-credit-card
+        strong Price:
+        = @picture.price
+        i.fas.fa-dollar-sign
+      = link_to 'Edit', edit_picture_path(@picture), class: "btn btn-danger"
+      = link_to 'Back', pictures_path, class: "btn btn-warning"
+      = link_to line_items_path(picture_id: @picture), method: :post, class: "btn btn-info float-right" do
+        i.fas.fa-cart-plus Add To Cart
+
+
+    .col-md-8
+      = image_tag(@picture.image_url, class: "picture-preview-large")

@@ -14,10 +14,104 @@
  *= require_self
  */
  @import "bootstrap";
- @import "store";
 
+$body-color: #f6f5d5;
+$footer-color: #ffc107;
 body {
   height: 100%;
-  background-color: #f6f5d5;
+  background-color: $body-color;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+footer {
+  background-color: $footer-color;
+  color: white;
+  margin-top: 50px;
+}
+
+.picture-preview-thumb {
+  width: 600px;
+  height: 500px;
+}
+.picture-preview-large {
+  width: 700px;
+  height: 550px;
+  margin-top: 25px;
+}
+.show-pic {
+  margin-top: 15px;
+}
+.card-img-top {
+  margin-top: 10px;
+}
+.new-picture {
+  margin-bottom: 10px;
+}
+.card-margin {
+  margin-bottom: 10px;
+  margin-topT: 10px;
+}
+#notice {
+  color: green;
+}
+.img-small-size {
+  width: 200px;
+  height: 150px;
+
+}
+@media only screen and (max-width: 768px) {
+  .img-small-size {
+  width: 270px;
+  min-height: 230px;
+  }
+}
+.total {
+  margin-top: 30px;
+}
+.fas.fa-palette {
+  font-size: 23px;
+}
+.fab.fa-sellcast {
+  font-size: 20px;
+}
+.card.border-warning {
+  width: 270px;
+  min-height: 200px;
+}
+@media only screen and (max-width: 768px) {
+  .card.border-warning {
+  width: 320px;
+  min-height: 250px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .card.border-warning.mb-2 {
+  width: 320px;
+  min-height: 250px;
+  }
+}
+.card.border-warning.mb-2 {
+  min-width: 200px;
+  min-height: 200px;
+}
+.row.row-center {
+  margin-right: 0 !important;
+  margin-left: 0 !important
+}
+.form-search {
+  display: flex;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.fas.fa-palette.big {
+  font-size: 80px;
+}
+.fas.fa-paint-brush.big {
+  font-size: 60px;
+ }
