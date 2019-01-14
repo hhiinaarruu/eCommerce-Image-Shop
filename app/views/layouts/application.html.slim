@@ -1,0 +1,60 @@
+doctype html
+html lang="en"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title  Picture Shop
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    link href="https://use.fontawesome.com/releases/v5.4.0/css/all.css" rel="stylesheet" /
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application'
+  body class=("#{yield (:body_class)}")
+    nav.navbar.navbar-expand-md.bg-warning.navbar-dark
+      .navbar-brand
+        = link_to root_path, class: "navbar-item btn btn-warning text-light" do
+          i.fas.fa-palette Picture Shop
+      button.navbar-toggler data-target="#collapsibleNavbar" data-toggle="collapse" type="button"
+        span.navbar-toggler-icon
+      #collapsibleNavbar.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            = form_tag search_pictures_path, method: :get, class: "form-search" do
+              = text_field_tag :search, nil, placeholder: "Search", class: "form-control"
+              = submit_tag "Search", class: "btn btn-danger"
+          - if user_signed_in?
+            li.nav-item
+              = link_to new_picture_path, class: "navbar-item btn btn-warning text-light" do
+                i.fab.fa-sellcast Sell
+            /! Dropdown
+            li.nav-item
+              = link_to carts_path, class: "navbar-item btn btn-warning text-light" do
+                span.icon.is-small
+                  i.fas.fa-shopping-cart
+                - if total_cart_items
+                  span.badge.badge-danger
+                    = cart_count_over_one
+            li.nav-item.dropdown
+              = link_to "",:id => "navbardrop",:'data-toggle' => 'dropdown', class: "navbar-item btn btn-warning text-light" do
+                i.fas.fa-user Account
+              .dropdown-menu
+                .dropdown-item
+                  i.fas.fa-edit
+                  = link_to "Edit User", edit_user_registration_path
+                .dropdown-item
+                  i.fas.fa-sign-out-alt
+                  = link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item"
+          - else
+            li.nav-item
+              .nav-link
+                = link_to "Sign In", new_user_session_path, class:"navbar-item button is-warning"
+            li.nav-item
+              .nav-link
+                = link_to "Sign up", new_user_registration_path, class:"navbar-item button is-warning"
+    = yield(:header)
+    .container
+      = yield
+  .footer-magin
+    = render "layouts/footer"
