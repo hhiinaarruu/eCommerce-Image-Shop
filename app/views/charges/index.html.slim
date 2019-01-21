@@ -1,0 +1,24 @@
+p#notice= notice
+i.fas.fa-user User :
+= current_user.name
+h2.text-warning Cart Status
+table.table.text-center
+  thead.bg-warning
+    tr.text-uppercase
+      th Create Date :
+      th Total Price :
+      th Cart Status :
+  tbody
+    - @cart_status.each do |status|
+      tr.text-uppercase.table-light
+        td= status.created_at
+        td
+          =status.total_price
+          i.fas.fa-dollar-sign
+        - if status.paid?
+          td.text-success= status.cart_status
+        - else
+          td.text-warning= status.cart_status
+
+br/
+

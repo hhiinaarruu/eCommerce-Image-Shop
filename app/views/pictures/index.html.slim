@@ -1,0 +1,39 @@
+- content_for :header do
+  section.hero.is-warning
+    .hero-body
+      .container
+        h1.title
+
+
+.row
+  - @pictures.each do |picture|
+    .card.col-md-4.card-margin
+      .card-img-top.text-center
+        = image_tag(picture.image_url ,class: "img-show")
+        - if picture.condition?
+          .text-right.text-secondary
+            = picture.condition
+        - if picture.available?
+          .text-right.text-success
+            = picture.status
+        - if picture.unavailable?
+          .text-right.text-warning
+            = picture.status
+        div
+          i.fas.fa-paint-brush ARTIST:
+          .text-warning
+            = picture.author
+      .card-body
+        h5.card-title
+          = link_to picture.title, picture, class: "btn btn-outline-warning"
+        p.card-text.text-info
+          i.fas.fa-user Sold by :
+          = picture.user&.name
+        .row
+          .btn.btn-primary.text-center
+            = number_to_currency(picture.price)
+          - if picture_author(picture)
+            = link_to 'Edit', edit_picture_path(picture), class: "btn btn-warning"
+            = link_to 'Delete', picture, method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-danger float-right"
+  .align-bottom.pagination-lg.btn
+    = paginate @pictures

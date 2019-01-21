@@ -15,3 +15,13 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
+/public/uploads
+debug.byebug_history
+.byebug_history
+coverage
+/coverage
+coverage/index.html
+public/upload
+public/uploads
+coverage/
