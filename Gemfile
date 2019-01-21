@@ -31,7 +31,10 @@ gem 'mini_magick'
 gem 'slim'
 gem 'stripe'
 gem 'kaminari', '~> 1.1.1'
-
+gem 'social-share-button'
+gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'active_admin_flat_skin'
+gem 'simplecov', require: false, group: :test
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -49,6 +52,10 @@ group :development, :test do
   gem 'better_errors', '~> 2.4'
   gem 'guard', '~> 2.14.2'
   gem 'guard-livereload', '~> 2.5.2'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'rails-controller-testing'
+  gem 'stripe-ruby-mock', '~> 2.5.0', require: 'stripe_mock'
 end
 
 group :development do
@@ -57,5 +64,10 @@ group :development do
   gem 'letter_opener'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'faker', '1.9.1'
 end
 

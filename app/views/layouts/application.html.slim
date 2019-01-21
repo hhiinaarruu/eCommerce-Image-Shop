@@ -41,6 +41,9 @@ html lang="en"
                 i.fas.fa-user Account
               .dropdown-menu
                 .dropdown-item
+                  i.fab.fa-amazon-pay
+                  = link_to "Cart Status", charges_path
+                .dropdown-item
                   i.fas.fa-edit
                   = link_to "Edit User", edit_user_registration_path
                 .dropdown-item
@@ -48,12 +51,11 @@ html lang="en"
                   = link_to "Log Out", destroy_user_session_path, method: :delete, class:"navbar-item"
           - else
             li.nav-item
-              .nav-link
-                = link_to "Sign In", new_user_session_path, class:"navbar-item button is-warning"
+              = link_to "Sign In", new_user_session_path,  class: "navbar-item btn btn-warning text-light"
             li.nav-item
-              .nav-link
-                = link_to "Sign up", new_user_registration_path, class:"navbar-item button is-warning"
+              = link_to "Sign up", new_user_registration_path,  class: "navbar-item btn btn-warning text-light"
     = yield(:header)
     .container
       = yield
-  = render "layouts/footer"
+  .footer-magin
+    = render "layouts/footer"
